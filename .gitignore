@@ -1,2 +1,23 @@
-node_modules/\ndist/\n.angular/\n*.log
+# Node modules
+node_modules/
+
+# Angular build output
+dist/
+out-tsc/
+
+# Angular cache
+.angular/
+
+# Logs
+*.log
+
+# IDEs
+.vscode/
+.idea/
+
+# System files
+.DS_Store
+Thumbs.db
+node_modules
+node_modules
 node_modules
