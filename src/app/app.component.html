@@ -1,18 +1,33 @@
-<div class="container">
-  <h1>{{ title }}</h1>
-  <div class="stats">
-    <p>Puntuación: <span class="score">{{ score }}</span></p>
-    <p>Vidas: {{ lives }}</p>
+<div class="game-container">
+  <div
+    class="player"
+    [style.left.%]="playerPosition.x"
+    [style.top.%]="playerPosition.y"
+  >
+    🚀
   </div>
 
-  <div class="game-area">
-    <div class="player" [style.left.%]="playerPosition.x" [style.top.%]="playerPosition.y"></div>
-    <div *ngFor="let star of stars" class="star" [style.left.%]="star.x" [style.top.%]="star.y"></div>
+  <div
+    class="star"
+    *ngFor="let star of stars"
+    [style.left.%]="star.x"
+    [style.top.%]="star.y"
+  >
+    ⭐
   </div>
 
-  <div *ngIf="gameOver" class="game-over">
-    <h2>¡Juego Terminado!</h2>
-    <p>Tu puntuación final: {{ score }}</p>
-    <button (click)="restartGame()">Jugar de Nuevo</button>
+  <div
+    class="meteor"
+    *ngFor="let meteor of meteors"
+    [style.left.%]="meteor.x"
+    [style.top.%]="meteor.y"
+  >
+    ☄️
+  </div>
+
+  <div class="scoreboard">
+    <p>Puntaje: {{ score }} | Vidas: {{ lives }} | Nivel: {{ level }}</p>
+    <button *ngIf="gameOver" (click)="restartGame()">Reiniciar</button>
+    <p *ngIf="gameOver">¡Game Over! 😵‍💫</p>
   </div>
 </div>
