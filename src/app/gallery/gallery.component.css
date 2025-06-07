@@ -1,8 +1,0 @@
-.galeria {
-  display: flex;
-  gap: 10px;
-}
-img {
-  border-radius: 8px;
-  box-shadow: 0 0 5px #aaa;
-}
