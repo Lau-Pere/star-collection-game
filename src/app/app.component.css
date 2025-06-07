@@ -1,127 +1,152 @@
+/* Contenedor general */
 .container {
-  max-width: 800px;
+  width: 500px;
   margin: 0 auto;
-  padding: 20px;
-  font-family: "Inter", -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
-  --bright-blue: oklch(51.01% 0.274 263.83);
-  --hot-red: oklch(61.42% 0.238 15.34);
-  --gray-900: oklch(19.37% 0.006 300.98);
-  --gray-700: oklch(36.98% 0.014 302.71);
-  --star-yellow: #ffd700;
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  color: white;
+  user-select: none;
+  background-color: #0a0a23;
+  border-radius: 10px;
+  padding: 10px;
 }
 
-body {
-  background: linear-gradient(180deg, #1a1a2e 0%, #16213e 100%);
-  margin: 0;
-  min-height: 100vh;
-}
-
+/* Título y stats */
 h1 {
-  color: #fff;
   text-align: center;
-  font-size: 2.5rem;
-  text-shadow: 0 0 10px var(--bright-blue);
+  margin-bottom: 10px;
+  font-size: 24px;
 }
 
 .stats {
-  display: flex;
-  justify-content: space-between;
-  color: #fff;
-  font-size: 1.2rem;
-  margin-bottom: 20px;
+  text-align: center;
+  margin-bottom: 10px;
+  font-weight: bold;
+  font-size: 18px;
 }
 
 .score {
-  font-weight: bold;
-  color: var(--bright-blue);
-  animation: pulse 1.5s infinite;
+  color: #ffdf00;
 }
 
+/* Área de juego */
 .game-area {
   position: relative;
-  width: 100%;
-  height: 500px;
-  background: rgba(0, 0, 0, 0.2);
-  border: 2px solid var(--bright-blue);
-  border-radius: 10px;
+  width: 500px;
+  height: 600px;
+  border: 2px solid #444;
   overflow: hidden;
+  background-color: #000a1a;
+  border-radius: 8px;
+  touch-action: none; /* para que touchmove funcione bien en móviles */
 }
 
+/* Fondo espacial */
+.space-background {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background-image: url('assets/planets-layer.png');
+  background-size: cover;
+  opacity: 0.5;
+  z-index: 0;
+}
+
+/* Jugador */
 .player {
   position: absolute;
-  width: 60px;
-  height: 60px;
-  background: url('assets/lindo-astronauta.png') no-repeat center;
+  width: 80px;
+  height: 80px;
+  background-image: url('assets/lindoastro.png');
   background-size: contain;
-  transform: translate(-50%, -50%);
-  transition: all 0.1s ease;
-  animation: bounce 0.5s infinite alternate;
+  background-repeat: no-repeat;
+  transition: left 0.05s, top 0.05s;
+  z-index: 10;
+  border-radius: 10px;
+  box-shadow: 0 0 15px 2px rgba(255, 255, 255, 0.7);
 }
 
+/* Efecto de inmunidad */
+.player.immune {
+  filter: drop-shadow(0 0 8px cyan);
+  animation: blink 1s infinite alternate;
+}
+
+@keyframes blink {
+  from { filter: drop-shadow(0 0 8px cyan); }
+  to { filter: drop-shadow(0 0 15px cyan); }
+}
+
+/* Estrellas comunes */
 .star {
   position: absolute;
   width: 20px;
   height: 20px;
-  background: var(--star-yellow);
-  clip-path: polygon(50% 0%, 61% 35%, 98% 35%, 68% 57%, 79% 91%, 50% 70%, 21% 91%, 32% 57%, 2% 35%, 39% 35%);
-  transform: translate(-50%, -50%);
-  animation: twinkle 0.5s infinite;
+  background-image: url('assets/star.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 5;
 }
 
+/* Estrellas fugaces */
+.superstar {
+  position: absolute;
+  width: 35px;
+  height: 35px;
+  background-image: url('assets/superstar.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 6;
+  filter: drop-shadow(0 0 6px white);
+}
+
+/* Meteoros */
+.meteor {
+  position: absolute;
+  width: 60px;
+  height: 60px;
+  background-image: url('assets/meteor.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  z-index: 7;
+  opacity: 1; /* Sin transparencia para que se vean bien */
+}
+
+/* Mensaje de Game Over */
 .game-over {
   position: absolute;
-  top: 50%;
+  top: 40%;
   left: 50%;
   transform: translate(-50%, -50%);
-  text-align: center;
-  background: rgba(0, 0, 0, 0.8);
-  padding: 20px;
+  background: rgba(20, 20, 40, 0.9);
   border-radius: 10px;
-  color: #fff;
-  animation: fadeIn 0.5s;
+  padding: 25px;
+  text-align: center;
+  width: 80%;
+  color: #ff4444;
+  font-weight: bold;
+  z-index: 20;
 }
 
 .game-over h2 {
-  color: var(--hot-red);
-  margin: 0 0 10px;
-}
-
-.game-over p {
-  margin: 0 0 20px;
+  margin-bottom: 15px;
+  font-size: 28px;
 }
 
 .game-over button {
-  padding: 10px 20px;
-  background: var(--bright-blue);
-  color: white;
+  background-color: #ff4444;
   border: none;
-  border-radius: 5px;
+  padding: 10px 20px;
+  font-size: 18px;
+  color: white;
   cursor: pointer;
-  transition: transform 0.2s;
+  border-radius: 6px;
 }
 
 .game-over button:hover {
-  transform: scale(1.1);
+  background-color: #cc3333;
 }
 
-@keyframes twinkle {
-  0% { opacity: 1; }
-  50% { opacity: 0.5; }
-  100% { opacity: 1; }
-}
-
-@keyframes bounce {
-  0% { transform: translate(-50%, -40%); }
-  100% { transform: translate(-50%, -60%); }
-}
-
-@keyframes pulse {
-  0% { transform: scale(1); }
-  50% { transform: scale(1.1); }
-  100% { transform: scale(1); }
-}
-
-@keyframes fadeIn {
-  0% { opacity: 0; }
-  100% { opacity: 1; }
+:host {
+  display: block;
+  background-color: transparent;
 }

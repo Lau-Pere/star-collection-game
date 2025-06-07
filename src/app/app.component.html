@@ -1,18 +1,43 @@
 <div class="container">
   <h1>{{ title }}</h1>
+
   <div class="stats">
-    <p>Puntuación: <span class="score">{{ score }}</span></p>
-    <p>Vidas: {{ lives }}</p>
+    Puntos: <span class="score">{{ score }}</span> |
+    Vidas: {{ lives }} |
+    Nivel: {{ level }}
   </div>
 
-  <div class="game-area">
-    <div class="player" [style.left.%]="playerPosition.x" [style.top.%]="playerPosition.y"></div>
-    <div *ngFor="let star of stars" class="star" [style.left.%]="star.x" [style.top.%]="star.y"></div>
+  <div class="game-area" (touchmove)="handleTouchMove($event)">
+    <div class="space-background"></div>
+
+    <!-- Jugador -->
+    <div
+      class="player"
+      [class.immune]="isImmune"
+      [style.left.px]="playerPosition.x"
+      [style.top.px]="playerPosition.y"
+    ></div>
+
+    <!-- Estrellas -->
+    <div
+      *ngFor="let star of stars"
+      [ngClass]="star.type === 'shootingStar' ? 'superstar' : 'star'"
+      [style.left.px]="star.x"
+      [style.top.px]="star.y"
+    ></div>
+
+    <!-- Meteoros -->
+    <div
+      *ngFor="let meteor of meteors"
+      class="meteor"
+      [style.left.px]="meteor.x"
+      [style.top.px]="meteor.y"
+    ></div>
   </div>
 
   <div *ngIf="gameOver" class="game-over">
-    <h2>¡Juego Terminado!</h2>
-    <p>Tu puntuación final: {{ score }}</p>
-    <button (click)="restartGame()">Jugar de Nuevo</button>
+    <h2>Juego Terminado</h2>
+    <p>Puntaje final: {{ score }}</p>
+    <button (click)="restartGame()">Reiniciar</button>
   </div>
 </div>
