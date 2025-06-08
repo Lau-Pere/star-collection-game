@@ -10,7 +10,7 @@ import { CommonModule } from '@angular/common';
 })
 export class AppComponent implements OnInit, OnDestroy {
   title = 'Recolecta las Estrellas';
-  playerPosition = { x: 220, y: 520 };
+  playerPosition = { x: 220, y: 400 }; // Ajustado a 400 para estar visible
   stars: { x: number, y: number, id: number, type: 'star' | 'shootingStar' }[] = [];
   meteors: { x: number, y: number, id: number }[] = [];
 
@@ -83,8 +83,8 @@ export class AppComponent implements OnInit, OnDestroy {
     const gameLoop = () => {
       if (this.gameOver) return;
 
-      const spawnStarProb = 0.008 + (this.level - 1) * 0.005;
-      const spawnMeteorProb = 0.006 + (this.level - 1) * 0.004;
+      const spawnStarProb = 0.008 + (this.level - 1) * 0.002; // Ajuste para velocidad inicial
+      const spawnMeteorProb = 0.006 + (this.level - 1) * 0.002;
 
       if (Math.random() < spawnStarProb) {
         this.stars.push({
@@ -103,8 +103,8 @@ export class AppComponent implements OnInit, OnDestroy {
         });
       }
 
-      const starSpeed = 1 + (this.level - 1) * 0.5;
-      const meteorSpeed = 1.2 + (this.level - 1) * 0.6;
+      const starSpeed = 0.5 + (this.level - 1) * 0.3; // Velocidad inicial más lenta
+      const meteorSpeed = 0.7 + (this.level - 1) * 0.4;
 
       this.stars = this.stars
         .map(star => ({ ...star, y: star.y + starSpeed }))
@@ -117,12 +117,12 @@ export class AppComponent implements OnInit, OnDestroy {
       this.handleStarCollisions();
       this.handleMeteorCollisions();
 
-      // Avanza nivel o termina el juego si es nivel máximo
       if (this.score >= this.level * 100) {
         if (this.level < this.maxLevel) {
           this.level++;
         } else {
           this.gameOver = true;
+          this.title = '¡Llegaste a la Estación Galáctica!';
         }
       }
 
@@ -176,7 +176,7 @@ export class AppComponent implements OnInit, OnDestroy {
     this.level = 1;
     this.stars = [];
     this.meteors = [];
-    this.playerPosition = { x: 220, y: 520 };
+    this.playerPosition = { x: 220, y: 400 };
     this.title = 'Recolecta las Estrellas';
     this.gameOver = false;
     this.isImmune = false;
@@ -185,4 +185,3 @@ export class AppComponent implements OnInit, OnDestroy {
     this.startGameLoop();
   }
 }
-

@@ -14,24 +14,24 @@
     <div
       class="player"
       [class.immune]="isImmune"
-      [style.left.px]="playerPosition.x"
-      [style.top.px]="playerPosition.y"
+      [style.left]="playerPosition.x + 'px'"
+      [style.top]="playerPosition.y + 'px'"
     ></div>
 
     <!-- Estrellas -->
     <div
       *ngFor="let star of stars"
       [ngClass]="star.type === 'shootingStar' ? 'superstar' : 'star'"
-      [style.left.px]="star.x"
-      [style.top.px]="star.y"
+      [style.left]="star.x + 'px'"
+      [style.top]="star.y + 'px'"
     ></div>
 
     <!-- Meteoros -->
     <div
       *ngFor="let meteor of meteors"
       class="meteor"
-      [style.left.px]="meteor.x"
-      [style.top.px]="meteor.y"
+      [style.left]="meteor.x + 'px'"
+      [style.top]="meteor.y + 'px'"
     ></div>
   </div>
 

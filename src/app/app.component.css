@@ -5,9 +5,8 @@
   font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   color: white;
   user-select: none;
-  background-color: #0a0a23;
-  border-radius: 10px;
   padding: 10px;
+  border-radius: 10px;
 }
 
 /* Título y stats */
@@ -37,7 +36,7 @@ h1 {
   overflow: hidden;
   background-color: #000a1a;
   border-radius: 8px;
-  touch-action: none; /* para que touchmove funcione bien en móviles */
+  touch-action: none;
 }
 
 /* Fondo espacial */
@@ -45,7 +44,7 @@ h1 {
   position: absolute;
   width: 100%;
   height: 100%;
-  background-image: url('assets/planets-layer.png');
+  background-image: url('/assets/space-background.png');
   background-size: cover;
   opacity: 0.5;
   z-index: 0;
@@ -56,7 +55,7 @@ h1 {
   position: absolute;
   width: 80px;
   height: 80px;
-  background-image: url('assets/lindoastro.png');
+  background-image: url('/assets/lindoastro.png');
   background-size: contain;
   background-repeat: no-repeat;
   transition: left 0.05s, top 0.05s;
@@ -81,7 +80,7 @@ h1 {
   position: absolute;
   width: 20px;
   height: 20px;
-  background-image: url('assets/star.png');
+  background-image: url('/assets/star.png');
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 5;
@@ -92,7 +91,7 @@ h1 {
   position: absolute;
   width: 35px;
   height: 35px;
-  background-image: url('assets/superstar.png');
+  background-image: url('/assets/superstar.png');
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 6;
@@ -104,11 +103,11 @@ h1 {
   position: absolute;
   width: 60px;
   height: 60px;
-  background-image: url('assets/meteor.png');
+  background-image: url('/assets/meteor.png');
   background-size: contain;
   background-repeat: no-repeat;
   z-index: 7;
-  opacity: 1; /* Sin transparencia para que se vean bien */
+  opacity: 1;
 }
 
 /* Mensaje de Game Over */
